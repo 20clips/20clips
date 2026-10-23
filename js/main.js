@@ -12,6 +12,23 @@ document.addEventListener('DOMContentLoaded', function () {
       links.classList.toggle('open');
       toggle.setAttribute('aria-expanded', links.classList.contains('open'));
     });
+    var closeNav = function () {
+      toggle.classList.remove('open');
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+    links.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { closeNav(); }
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.site-header')) { closeNav(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { closeNav(); }
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 860) { closeNav(); }
+    });
   }
 
   // Portfolio filter UI removed by request; grids simply display all items.

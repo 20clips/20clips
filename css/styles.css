@@ -165,6 +165,7 @@ p:last-child{margin-bottom:0;}
   transition:color 0.15s ease;
 }
 .nav-links a:hover{color:var(--ink);}
+.nav-links .only-mobile{display:none;}
 .nav-cta{display:flex;align-items:center;gap:22px;}
 .nav-toggle{
   display:none;
@@ -185,23 +186,31 @@ p:last-child{margin-bottom:0;}
 
 @media (max-width:860px){
   .nav-links{
-    position:fixed;
-    top:76px;left:0;right:0;
+    position:absolute;
+    top:100%;left:0;right:0;
     background:var(--paper);
     border-bottom:1px solid var(--line);
     flex-direction:column;
-    align-items:flex-start;
+    align-items:stretch;
     gap:0;
-    padding:8px 28px 20px;
+    padding:4px 28px 12px;
     transform:translateY(-8px);
     opacity:0;
+    visibility:hidden;
     pointer-events:none;
-    transition:opacity .18s ease, transform .18s ease;
+    transition:opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
   }
-  .nav-links.open{opacity:1;transform:translateY(0);pointer-events:auto;}
-  .nav-links a{width:100%;padding:14px 0;border-bottom:1px solid var(--line);}
-  .nav-toggle{display:block;}
+  .nav-links.open{opacity:1;transform:translateY(0);visibility:visible;pointer-events:auto;transition-delay:0s;}
+  .nav-links li{display:block;width:100%;}
+  .nav-links a{display:block;width:100%;padding:15px 0;font-size:1.02rem;border-bottom:1px solid var(--line);}
+  .nav-links li:last-child a{border-bottom:0;}
+  .nav-toggle{display:block;padding:0;cursor:pointer;}
+  .nav-cta{gap:14px;}
   .nav-cta .btn-primary{padding:0.7rem 1.1rem;font-size:0.88rem;}
+}
+@media (max-width:380px){
+  .nav-cta .btn-primary{padding:0.6rem 0.9rem;font-size:0.82rem;}
+  .logo{font-size:1.25rem;}
 }
 
 /* ---------- Hero ---------- */
